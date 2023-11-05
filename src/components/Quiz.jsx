@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 
 const Quiz = ({questions}) => {
@@ -6,6 +6,8 @@ const Quiz = ({questions}) => {
   const [score, setScore] = useState(0);
   // console.log(questions)
  
+
+  //Result 
   const Result = () => {
     const navigate = useNavigate();
     return (
@@ -16,6 +18,7 @@ const Quiz = ({questions}) => {
     )
   }
 
+  //handling answer submit
   const handleClick = (e) => {
   const choosenAnswer = e;
   if(quesNum >= 0 && quesNum <= 7){
@@ -34,7 +37,7 @@ const Quiz = ({questions}) => {
     </div>
     {(quesNum > 7)? <><Result/></>:
     <div className="mt-[40px]" key={questions[quesNum]?.id}>
-     <h4 className="ml-[30px] text-[1rem] bg-green-400 text-white uppercase">Question {questions[quesNum]?.id}</h4>
+     <h4 className="ml-[30px] text-[1rem] bg-green-400 text-white uppercase">Question {questions[quesNum]?.id}/8</h4>
      <h2 className="text-[21px] mt-[20px] ml-[15px]">{questions[quesNum]?.question}</h2>
       <div className="flex flex-col mt-[10px] ml-[20px]">
         <span className="mt-[20px] mr-[40%] p-2 border-green-500 border-[1px] rounded-[7px] hover:bg-green-300 cursor-pointer" onClick={(e) => handleClick(e.currentTarget.innerText)}>{questions[quesNum]?.options[0]}</span>
